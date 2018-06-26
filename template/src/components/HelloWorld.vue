@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <div @click="sayName">hello world ! {{name}}</div>
+    <div @click="sayName">hello world ! {{helloWorld}}</div>
     <h2>Essential Links</h2>
     <ul>
       <li>
@@ -96,7 +96,7 @@
 
     },
     computed:{
-      name(){
+      helloWorld(){
         return this.$store.state.name;
       },
     },
