@@ -13,7 +13,7 @@
 
 This is a project template for [vue-cli](https://github.com/vuejs/vue-cli). **It is recommended to use npm 3+ for a more efficient dependency tree.**
 
-``` bash
+``` 
 $ npm install -g vue-cli
 $ vue init webpack my-project
 $ cd my-project
@@ -28,7 +28,7 @@ $ vue init webpack#develop my-project
 ```
 
 :warning: **The develop branch is not considered stable and can contain bugs or not build at all, so use at your own risk.**
-
+ 
 The development server will run on port 8080 by default. If that port is already in use on your machine, the next free port will be used.
 
 ## What's Included
@@ -64,3 +64,7 @@ You can fork this repo to create your own boilerplate, and use it with `vue-cli`
 ``` bash
 vue init username/repo my-project
 ```
+
+1. template文件夹下定义模板
+2. meta.js 收集用户的设置信息,必须导出为一个对象
+3. 

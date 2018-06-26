@@ -18,20 +18,17 @@ module.exports = {
     // When running tests for the template, this adds answers for the selected scenario
     before: addTestAnswers
   },
+    //自定义的 Handlebars 辅助函数
   helpers: {
-    if_or(v1, v2, options) {
-
-      if (v1 || v2) {
-        return options.fn(this)
-      }
-
-      return options.inverse(this)
+    //if_eq,unless_eq
+    "if_or":function(v1, v2, options) {
+        return  (v1 || v2)?options.fn(this):options.inverse(this);
     },
-    template_version() {
+    "template_version":function() {
       return templateVersion
     },
   },
-  
+    //收集用户自定义数据
   prompts: {
     name: {
       when: 'isNotTest',
@@ -69,6 +66,10 @@ module.exports = {
         },
       ],
     },
+      vuex:{
+          "type": "confirm",
+          "message": "Install vuex?"
+      },
     router: {
       when: 'isNotTest',
       type: 'confirm',
@@ -157,6 +158,7 @@ module.exports = {
       ],
     },
   },
+    //根据条件过滤文件,?干什么的=> 是否引入文件的意思,根据配置信息处理
   filters: {
     '.eslintrc.js': 'lint',
     '.eslintignore': 'lint',
@@ -169,8 +171,11 @@ module.exports = {
     'test/unit/specs/index.js': "unit && runner === 'karma'",
     'test/unit/setup.js': "unit && runner === 'jest'",
     'test/e2e/**/*': 'e2e',
-    'src/router/**/*': 'router',
+    "src/store/**/*": "vuex",  //加入自己的目录
+    'src/router/**/*': 'router',  //例如上面的 router 为true的时候，就会加入这个目录
   },
+    //模板渲染完成后的回调函数, 优先于 completeMessage
+  completeMessage:'模板渲染完成后给予的提示信息, 支持 handlebars 的 mustaches 表达式',
   complete: function(data, { chalk }) {
     const green = chalk.green
 
